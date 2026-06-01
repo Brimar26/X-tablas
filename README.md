@@ -16,6 +16,13 @@
         button { padding: 15px 30px; border: none; cursor: pointer; border-radius: 10px; background: #4f46e5; color: white; font-size: 18px; font-weight: bold; margin: 5px; }
         input { padding: 12px; border-radius: 8px; border: 2px solid #ddd; width: 80%; font-size: 24px; text-align: center; margin: 10px 0; }
         .input-perfil { font-size: 16px; padding: 8px; width: 60%; }
+        /* IMPORTANTE: Ajuste para móviles */
+@media (max-width: 768px) {
+    .sidebar { width: 100%; height: auto; position: relative; } /* El menú se vuelve una barra superior */
+    .main { margin-left: 0; width: 100%; } /* El contenido ocupa todo el ancho */
+    .grid { grid-template-columns: repeat(2, 1fr); } /* Módulos de 2 en 2 en móviles */
+}
+    
     </style>
 </head>
 <body>
