@@ -1,4 +1,3 @@
-
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +28,6 @@
 <div id="contenido"></div>
 
 <script>
-    // Sistema de audio web para evitar bloqueos del navegador
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
     function reproducirTono(tipo) {
@@ -80,7 +78,7 @@
 
     const avatarSVG = `
         <div class="avatar-box">
-            <svg viewBox="0 0 100 100" xmlns="http://w3.org">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="40" fill="#4f46e5"/>
                 <rect x="35" y="35" width="30" height="25" rx="5" fill="#ffffff"/>
                 <circle cx="43" cy="45" r="4" fill="#4f46e5"/>
@@ -101,18 +99,18 @@
 
             c.innerHTML = `
                 <div class="card">
-                    ` + avatarSVG + `
+                    ${avatarSVG}
                     <h2>👤 Perfil del Estudiante</h2>
                     <p style="font-size: 1.2em; color: #4b5563;">¡Bienvenido a tu panel de progreso!</p>
                     
                     <div style="text-align: left; background: #f3f4f6; padding: 15px; border-radius: 10px; margin: 20px 0;">
-                        <p><strong>Nombre:</strong> <span id="lblNombre">` + nombreActual + `</span></p>
-                        <p><strong>Puntaje Máximo:</strong> ` + recordActual + ` / 100</p>
-                        <p><strong>Rango:</strong> ` + (parseInt(recordActual) >= 80 ? '👑 Maestro de las Tablas' : '✏️ Aprendiz Activo') + `</p>
+                        <p><strong>Nombre:</strong> <span id="lblNombre">${nombreActual}</span></p>
+                        <p><strong>Puntaje Máximo:</strong> ${recordActual} / 100</p>
+                        <p><strong>Rango:</strong> ${parseInt(recordActual) >= 80 ? '👑 Maestro de las Tablas' : '✏️ Aprendiz Activo'}</p>
                     </div>
 
                     <div style="margin-bottom: 20px;">
-                        <input id="inputNombre" class="input-perfil" type="text" placeholder="Cambiar tu nombre..." value="` + nombreActual + `">
+                        <input id="inputNombre" class="input-perfil" type="text" placeholder="Cambiar tu nombre..." value="${nombreActual}">
                         <button onclick="guardarNombre()" style="padding: 8px 15px; font-size: 14px;">💾 Guardar</button>
                     </div>
 
@@ -121,7 +119,7 @@
         } else {
             c.innerHTML = `
                 <div class="card">
-                    ` + avatarSVG + `
+                    ${avatarSVG}
                     <div id="msg" class="msg-box">¡Hola! ¿Listo para el desafío?</div>
                     <button onclick="iniciarLeccion()">🚀 Iniciar Desafío (100s)</button>
                     <div id="area"></div>
@@ -148,10 +146,9 @@
             preguntas.push({ q: a + " × " + b + " = ?", a: a*b });
         }
         
-        // CORREGIDO CON CONCATENACIÓN ROBUSTA: Acceso directo y seguro al primer elemento de la lista
         document.getElementById("area").innerHTML = `
             <div id="timer">100s</div>
-            <h2 id="q">` + preguntas[0].q + `</h2>
+            <h2 id="q">${preguntas[0].q}</h2>
             <input id="r" type="number" inputmode="numeric" autofocus><br>
             <button onclick="responder()">Enviar</button>`;
         
@@ -182,7 +179,6 @@
             msg.style.color = "green";
         } else {
             reproducirTono('fail'); 
-            
             let vozErr = new SpeechSynthesisUtterance("Vuelve a intentarlo");
             vozErr.lang = "es-ES";
             window.speechSynthesis.speak(vozErr);
@@ -212,7 +208,7 @@
 
         document.getElementById("area").innerHTML = `
             <h2>🏁 Juego Finalizado</h2>
-            <p style="font-size: 1.4em;">Puntaje obtenido: <strong>` + puntajeFinal + ` / 100</strong></p>
+            <p style="font-size: 1.4em;">Puntaje obtenido: <strong>${puntajeFinal} / 100</strong></p>
             <button onclick="abrirModulo('tablas')">Volver al inicio</button>`;
     }
 
